@@ -12,11 +12,11 @@ Go to deploy-react-kubernetes
 
 Now run docker build command to build this image 
 
-    docker build -t deploy-react-kubernetes .
+    docker build -t farhanluckali/movie-finder-app .
 
 Test you image to run locally 
 
-    docker run -p 3000:3000 deploy-react-kubernetes
+    docker run -p 3000:3000 farhanluckali/movie-finder-app
 
 Now make sure your application is running fine on 
 
@@ -25,9 +25,7 @@ Now make sure your application is running fine on
 
 Now our image is ready so we need to push this image to registry i am using docker public registry 
 Create dockerhub account and go to setting ---> security ----> create token with write access.
-Now tag the docker image with your registry username in my case 
 
-    docker tag deploy-react-kubernetes farhanluckali/deploy-react-kubernetes
 
 Login to docker  
 
@@ -36,7 +34,7 @@ Paste the access token when it ask for password
 
 Now push image to repo 
 
-    docker push farhanluckali/deploy-react-kubernetes
+    docker push farhanluckali/movie-finder-app
 
 verfiy image from your dockerhub account 
 
@@ -106,7 +104,7 @@ create deployment file for react app (deployment.yaml)
         spec:
           containers:
           - name:  react-app
-            image:  farhanluckali/react-kubernetes
+            image:  farhanluckali/movie-finder-app
             ports:
             - containerPort: 3000
 
