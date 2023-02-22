@@ -88,27 +88,27 @@ verify cluster
 
 create deployment file for react app (deployment.yaml)
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name:  react-app
-  labels:
-    app:  react-app
-spec:
-  selector:
-    matchLabels:
-      app: react-app
-  replicas: 1
-  template:
+    apiVersion: apps/v1
+    kind: Deployment
     metadata:
+      name:  react-app
       labels:
         app:  react-app
     spec:
-      containers:
-      - name:  react-app
-        image:  farhanluckali/react-kubernetes
-        ports:
-        - containerPort: 3000
+      selector:
+        matchLabels:
+          app: react-app
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app:  react-app
+        spec:
+          containers:
+          - name:  react-app
+            image:  farhanluckali/react-kubernetes
+            ports:
+            - containerPort: 3000
 
 save and exit 
 
@@ -123,20 +123,20 @@ Verify the deployment
 When pod is in running state then we will create the service file (service.yaml)
 
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: react-app
-  namespace: default
-spec:
-  selector:
-    app: react-app
-  type: LoadBalancer
-  ports:
-  - name: react-app
-    protocol: TCP
-    port: 80
-    targetPort: 3000
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: react-app
+      namespace: default
+    spec:
+      selector:
+        app: react-app
+      type: LoadBalancer
+      ports:
+      - name: react-app
+        protocol: TCP
+        port: 80
+        targetPort: 3000
 
 save and exit 
 
